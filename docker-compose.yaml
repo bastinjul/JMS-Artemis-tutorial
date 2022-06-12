@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: artemis-backend
+    image: bastinjul/jms_tuto_backend
+    build: 
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
+  message-queue:
+    container_name: artemis-broker
+    image: quay.io/artemiscloud/activemq-artemis-broker
+    ports:
+      - "8161:8161"
+      - "61616:61616"
+      - "5672:5672"
+    environment:
+      AMQ_USER: admin
+      AMQ_PASSWORD: admin
