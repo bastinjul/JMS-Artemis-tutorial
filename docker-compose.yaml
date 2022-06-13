@@ -4,7 +4,8 @@ services:
   backend:
     container_name: artemis-backend
     image: bastinjul/jms_tuto_backend
-    build: 
+    build:
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"

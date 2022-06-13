@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfigura
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest()
-@EnableAutoConfiguration(exclude={JmsAutoConfiguration.class, ActiveMQAutoConfiguration.class})
 class JmsTutoApplicationTests {
 
 	@Test
