@@ -15,6 +15,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "TestController")
 public class TestController {
 
+    public static final String QUEUE_NAME = "queue";
+    public static final String QUEUE_LISTENER_NAME = "queue.listener";
+
     private final ProducerService producerService;
     private final ConsumerService consumerService;
 
@@ -34,7 +37,15 @@ public class TestController {
     @GetMapping(value="/test/send")
     @ResponseBody
     public String testSend(@RequestParam(value = "message", defaultValue = "Hello") String message) {
-        producerService.sendMessage(message);
+        producerService.sendMessage(message, QUEUE_NAME);
+        return "Message sent";
+    }
+
+    @Operation
+    @GetMapping(value="/test/send/to/listener")
+    @ResponseBody
+    public String testSendToListener(@RequestParam(value = "message", defaultValue = "Hello") String message) {
+        producerService.sendMessage(message, QUEUE_LISTENER_NAME);
         return "Message sent";
     }
 
@@ -42,6 +53,6 @@ public class TestController {
     @GetMapping(value="/test/receive")
     @ResponseBody
     public String receive() {
-        return consumerService.synchronousReceive();
+        return consumerService.synchronousReceive(QUEUE_NAME);
     }
 }

@@ -11,7 +11,7 @@ public class ConsumerService {
         this.jms = jmsTemplate;
     }
 
-    public String synchronousReceive() {
+    public String synchronousReceive(String destination) {
         return (String) jms.receiveAndConvert("queue");
     }
 }

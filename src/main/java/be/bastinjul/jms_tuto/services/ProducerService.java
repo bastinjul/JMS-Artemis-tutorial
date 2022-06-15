@@ -12,7 +12,7 @@ public class ProducerService {
         this.jms = jmsTemplate;
     }
 
-    public void sendMessage(String message) {
-        jms.convertAndSend("queue", message);
+    public void sendMessage(String message, String destination) {
+        jms.convertAndSend(destination, message);
     }
 }

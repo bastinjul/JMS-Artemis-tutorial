@@ -1,5 +1,6 @@
 package be.bastinjul.jms_tuto.services;
 
+import be.bastinjul.jms_tuto.api.TestController;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,7 @@ public class ListenerService {
 
     private static final Logger LOGGER = Logger.getLogger(ListenerService.class.getName());
 
-    @JmsListener(destination = "queue")
+    @JmsListener(destination = TestController.QUEUE_LISTENER_NAME)
     public void receiveMessage(String message) {
         LOGGER.info("Received <" + message + ">");
     }
